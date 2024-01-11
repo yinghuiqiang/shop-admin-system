@@ -53,7 +53,6 @@ export const findUserById = (data) =>
   })
 
   // shop category
-
   export const getShopCategory = (data) =>
   instance({
     url: '/get-shop-category',
@@ -82,4 +81,48 @@ export const findUserById = (data) =>
     url: '/change-category-info-byid',
     method: 'post',
     data,
+  })
+
+  // shop
+  export const getShopList = () =>
+  instance({
+    url: '/get-shop-list',
+    method: 'post',
+  })
+  export const getShopCategoryList = () =>
+  instance({
+    url: '/get-shop-category-list',
+    method: 'post',
+  })
+  export const addShop = (data) =>
+  instance({
+    url: '/add-shop',
+    method: 'post',
+    data,
+    headers: {
+      // 提交的是一个表单文件
+      'Content-Type': 'multipart/form-data',
+    },
+  })
+  export const deleteShopById = (data) =>
+  instance({
+    url: '/delete-shop-byid',
+    method: 'post',
+    data,
+  })
+  export const findShopById = (data) =>
+  instance({
+    url: '/find-shop-byid',
+    method: 'post',
+    data,
+  })
+  export const changeShopById = (data) =>
+  instance({
+    url: '/change-shop-byid',
+    method: 'post',
+    data,
+    headers: {
+      // 提交的是一个表单文件
+      'Content-Type': 'multipart/form-data',
+    },
   })

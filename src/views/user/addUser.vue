@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-breadcrumb separator="/">
-      <el-breadcrumb-item>企业门户管理系统</el-breadcrumb-item>
+      <el-breadcrumb-item>欢乐集电商管理系统</el-breadcrumb-item>
       <el-breadcrumb-item :to="{ path: '/' }">
         <span class="breadcrumbTitle">添加用户</span>
       </el-breadcrumb-item>

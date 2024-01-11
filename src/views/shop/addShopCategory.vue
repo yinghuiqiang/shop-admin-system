@@ -123,8 +123,6 @@ const addShopCategoryRules = reactive({
   ],
 })
 const updateCategoryInfo = async () => {
-  // await axios.put'
-  console.log(111);
   updateFormRef.value.validate(async (vaild) => {
     if (vaild) {
       const result = await changeCategoryInfoById(updateForm)
@@ -174,6 +172,7 @@ const submitForm = () => {
         })
         addShopCategoryForm.categoryName = ''
         addShopCategoryForm.categoryDesc = ''
+        getTableData()
       }
     }
   })

@@ -26,9 +26,9 @@
       <el-form-item label="商品数量" prop="shopNum">
         <el-input v-model="addShopForm.shopNum"></el-input>
       </el-form-item>
-      <el-form-item label="商品分类" prop="shopPrice">
+      <el-form-item label="商品分类" prop="shopCateCode">
         <el-select
-          v-model="addShopForm.shopCate"
+          v-model="addShopForm.shopCateCode"
           multiple
           collapse-tags
           collapse-tags-tooltip
@@ -59,7 +59,7 @@ import { ref, reactive ,onMounted} from 'vue'
 import upload from '@/components/upload/upload.vue'
 import { ElMessage } from 'element-plus'
 import uploadFn from '@/util/upload'
-import {getShopCategory} from '@/api'
+import {getShopCategory,addShop} from '@/api'
 
 const ruleForm = ref()
 
@@ -68,8 +68,10 @@ const addShopForm = reactive({
   shopDesc: '',
   shopPrice: 0,
   shopNum: 0,
-  shopCate: [],
+  shopCateCode: [],
+  shopCategory:{},
   shopLogo: '',
+  userRating:[],
   file: null,
 })
 const uploadHandler = file => {
@@ -83,8 +85,8 @@ const addShopRules = reactive({
     { required: true, message: '请输入商品名称', trigger: 'blur' },
     {
       min: 1,
-      max: 20,
-      message: '长度在 1 到 20 个字符',
+      max: 200,
+      message: '长度在 1 到 200 个字符',
       trigger: 'blur',
     },
   ],
@@ -100,26 +102,36 @@ const addShopRules = reactive({
   shopPrice: [{ required: true, message: '请给商品定价', trigger: 'change' }],
   shopNum: [{ required: true, message: '请输入商品的数量', trigger: 'blur' }],
   shopLogo: [{ required: true, message: '请上传商品图片', trigger: 'change' }],
-  shopCate:[{ required: true, message: '请添加商品分类', trigger: 'blur' }],
+  shopCateCode:[{ required: true, message: '请添加商品分类', trigger: 'blur' }],
 })
 
 const submitForm = () => {
   ruleForm.value.validate(async (valid) => {
+
     if (valid) {
-      console.log(addShopForm);
-      // const result = await addUser(addShopForm)
-      // if ((result.message = 'success')) {
-      //   ElMessage.success({
-      //     message: '添加用户成功',
-      //     type: 'success',
-      //   })
-      //   addShopForm.username = ''
-      //   addShopForm.password = ''
-      //   addShopForm.role = 2
-      //   addShopForm.introduction = ''
-      //   addShopForm.gender = 1
-      //   addShopForm.avatar = ''
-      // }
+      let category = {}
+      shopCateList.value.forEach(item=>{
+        if(item._id == addShopForm.shopCateCode[0]){
+          category = item
+        }
+      })
+      addShopForm.shopCategory = category
+      const result = await addShop(addShopForm)
+      if ((result.message = 'success')) {
+        ElMessage.success({
+          message: '添加商品成功',
+          type: 'success',
+        })
+        addShopForm.shopName = ''
+        addShopForm.shopDesc = ''
+        addShopForm.shopPrice = 0
+        addShopForm.shopCateCode = []
+        addShopForm.shopCategory = {}
+        addShopForm.shopNum = 0
+        addShopForm.shopLogo = ''
+        addShopForm.file = null
+        addShopForm.userRating = []
+      }
     }
   })
 }
