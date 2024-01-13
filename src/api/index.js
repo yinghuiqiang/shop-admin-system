@@ -126,3 +126,48 @@ export const findUserById = (data) =>
       'Content-Type': 'multipart/form-data',
     },
   })
+
+  // shopUser
+  export const getShopUserList = (data) =>
+  instance({
+    url: '/get-shop-user-list',
+    method  : 'post',
+  })
+// export const userLogin = (data) =>
+//   instance({
+//     url: '/user-login',
+//     method: 'post',
+//     data,
+//   })
+export const addShopUser = (data) =>
+  instance({
+    url: '/add-shop-user',
+    method: 'post',
+    data,
+    headers: {
+      // 提交的是一个表单文件
+      'Content-Type': 'multipart/form-data',
+    },
+  })
+export const deleteShopUserById = (data) =>
+  instance({
+    url: '/delete-shop-user-byid',
+    method: 'post',
+    data,
+  })
+export const changeShopUserById = (data) =>
+  instance({
+    url: '/change-shop-user-byid',
+    method: 'post',
+    data,
+    headers: {
+      // 提交的是一个表单文件
+      'Content-Type': 'multipart/form-data',
+    },
+  })
+export const FindShopUserById = (data) =>
+  instance({
+    url: '/find-shop-user-byid',
+    method: 'post',
+    data,
+  })

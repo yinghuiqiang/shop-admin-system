@@ -38,7 +38,7 @@
         <el-menu-item-group>
           <el-menu-item index="/addShopUser">添加商城用户</el-menu-item>
           <el-menu-item index="/shopUserList">商城用户列表</el-menu-item>
-          <el-menu-item index="/shopUserManage">商城用户列表管理</el-menu-item>
+          <el-menu-item index="/shopUserManage">商城用户管理</el-menu-item>
         </el-menu-item-group>
       </el-sub-menu>
       <el-sub-menu index="/shop">
