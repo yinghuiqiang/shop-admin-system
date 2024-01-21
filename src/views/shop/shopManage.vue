@@ -36,7 +36,12 @@
           </template>
         </el-table-column>
         <el-table-column label="价格(￥)" prop="shopPrice"></el-table-column>
-        <el-table-column label="数量（件）" prop="shopNum"></el-table-column>
+        <el-table-column label="销量" prop="buyNum"></el-table-column>
+        <el-table-column label="库存数量（件）">
+          <template #default="scoped">
+            {{ parseInt(scoped.row.shopNum) - scoped.row.buyNum }}
+          </template>
+        </el-table-column>
         <el-table-column label="用户评价">
           <template #default="scope">
             {{
@@ -103,6 +108,12 @@
               autocomplete="off"
             ></el-input>
           </el-form-item>
+          <el-form-item label="商品销量" label-width="80px" prop="buyNum">
+            <el-input
+              v-model="updateForm.buyNum"
+              autocomplete="off"
+            ></el-input>
+          </el-form-item>
           <el-form-item label="商品数量" label-width="80px" prop="shopNum">
             <el-input v-model="updateForm.shopNum" autocomplete="off"></el-input>
           </el-form-item>
@@ -165,6 +176,7 @@
     ],
     shopPrice: [{ required: true, message: '请给商品定价', trigger: 'change' }],
     shopNum: [{ required: true, message: '请输入商品的数量', trigger: 'blur' }],
+    buyNum: [{ required: true, message: '请输入商品的销量', trigger: 'blur' }],
     shopLogo: [{ required: true, message: '请上传商品图片', trigger: 'change' }],
     shopCateCode: [
       { required: true, message: '请添加商品分类', trigger: 'blur' },
@@ -182,6 +194,7 @@
     shopCategory: {},
     shopLogo: '',
     userRating: [],
+    buyNum:0,
     file: null,
   })
   

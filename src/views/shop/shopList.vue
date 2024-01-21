@@ -19,7 +19,8 @@
               <span>商品描述：</span><strong>{{ item1.shopDesc }}</strong>
             </p>
             <p><span>商品价格：</span>{{ item1.shopPrice }}￥</p>
-            <p><span>库存：</span>{{ item1.shopNum }}</p>
+            <p><span>商品销量：</span>{{ item1.buyNum }}</p>
+            <p><span>库存：</span>{{ item1.shopNum - item1.buyNum }}</p>
           </div>
         </div>
       </div>
@@ -62,7 +63,11 @@ onMounted(async () => {
     margin-bottom: 25px;
     img {
       width: 100%;
-      height: 250px;
+      height: 300px;
+      object-fit: contain;
+      border-radius: 8px;
+      padding: 10px 0;
+      background-color: #fff;
     }
     .info {
       padding: 10px 15px;

@@ -58,12 +58,6 @@ import store from '@/store'
 const particlesInit = async (engine) => {
   await loadFull(engine)
 }
-
-// 粒子效果的插件
-// "particles.vue3": "^2.12.0",
-// "tsparticles": "^2.9.3",
-
-// 散点设置
 const options = {
   background: {
     color: {
