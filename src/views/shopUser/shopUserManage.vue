@@ -82,6 +82,12 @@
               v-model="updateForm.introduction"
             ></el-input>
           </el-form-item>
+          <el-form-item label="收货地址" label-width="100px" prop="address">
+            <el-input
+              type="textarea"
+              v-model="updateForm.address"
+            ></el-input>
+          </el-form-item>
           <el-form-item label-width="100px" label="商城用户头像" prop="avatar">
                 <upload
                   :avatar="updateForm.avatar"
@@ -140,7 +146,8 @@ import upload from '@/components/upload/upload.vue'
     introduction: '',
     gender: store.state.userInfo.gender ? store.state.userInfo.gender : 2,
     avatar:'',
-    file:null
+    file:null,
+    address:''
   })
 
   const uploadHandler = (file) => {

@@ -33,6 +33,9 @@
         <el-form-item label="个人简介" prop="introduction">
           <el-input type="textarea" v-model="addUserForm.introduction"></el-input>
         </el-form-item>
+        <el-form-item label="收货地址" prop="address">
+          <el-input type="textarea" v-model="addUserForm.address"></el-input>
+        </el-form-item>
         <el-form-item label="用户头像" prop="avatar">
           <upload :avatar="addUserForm.avatar" @avatarChange="uploadHandler"></upload>
         </el-form-item>
@@ -58,6 +61,7 @@
     password: "",
     introduction: "",
     avatar: "",
+    address:'',
     file: null,
     gender: 1
   });
@@ -100,6 +104,7 @@
           addUserForm.introduction = "";
           addUserForm.gender = 1;
           addUserForm.avatar = "";
+          addUserForm.address = "";
         }
       }
     });
